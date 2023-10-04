@@ -34,8 +34,6 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 
-vim.cmd("colorscheme elflord")
-
 vim.api.nvim_create_user_command("RecursivePath",function() setRecursivePath() end,{})
 
 local id = vim.api.nvim_create_augroup("CustomAutoCmd", {})
