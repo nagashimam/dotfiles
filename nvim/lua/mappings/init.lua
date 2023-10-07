@@ -59,4 +59,3 @@ vim.keymap.set("n", "[T", [[<Cmd>:tabfirst<CR>]])
 vim.keymap.set("n", "]T", [[<Cmd>:tablast<CR>]])
  
 vim.keymap.set("n", "<Leader>p", [[<Cmd>:RecursivePath<CR>]])
-

@@ -36,6 +36,13 @@ vim.wo.cursorline = true
 
 vim.api.nvim_create_user_command("RecursivePath",function() setRecursivePath() end,{})
 
+vim.g.netrw_banner = 0        
+vim.g.netrw_browse_split = 4  
+vim.g.netrw_altv = 1          
+vim.g.netrw_liststyle = 3     
+vim.cmd("filetype plugin on")
+
+
 local id = vim.api.nvim_create_augroup("CustomAutoCmd", {})
 vim.api.nvim_create_autocmd({"FocusGained","BufEnter","CursorHold","CursorHoldI"}, {
   group = id,
