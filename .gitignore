@@ -17,3 +17,7 @@ pulse
 user-dirs.dirs
 user-dirs.locale
 xarchiver
+QtProject.conf
+mimeapps.list
+qt5ct
+vlc
