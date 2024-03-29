@@ -1,4 +1,5 @@
 {
   "coc.preferences.formatOnSave": true,
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "http.proxyCA": "/Users/mzb0005/cert_ZerobankCA.crt"
 }

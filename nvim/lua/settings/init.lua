@@ -42,6 +42,9 @@ vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3     
 vim.cmd("filetype plugin on")
 
+vim.opt.termguicolors = true
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
 
 local id = vim.api.nvim_create_augroup("CustomAutoCmd", {})
 vim.api.nvim_create_autocmd({"FocusGained","BufEnter","CursorHold","CursorHoldI"}, {
