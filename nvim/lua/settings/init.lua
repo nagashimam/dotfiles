@@ -49,3 +49,6 @@ vim.api.nvim_create_autocmd({"FocusGained","BufEnter","CursorHold","CursorHoldI"
   pattern = "*",
   command = "checktime"
 })
+
+require("kanagawa").setup({transparent = true})
+vim.cmd("colorscheme kanagawa")
