@@ -23,6 +23,8 @@ plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
 
 if UsingHomePC then
   plug('rebelot/kanagawa.nvim')
+else
+  plug('folke/tokyonight.nvim')
 end
 
 plug("NeogitOrg/neogit")
