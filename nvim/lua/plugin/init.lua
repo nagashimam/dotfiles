@@ -16,7 +16,6 @@ plug('nvim-telescope/telescope-fzf-native.nvim',
     ['do'] =
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   })
-plug('neoclide/coc.nvim', { ['branch'] = 'release' })
 plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 if UsingHomePC then
