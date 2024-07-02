@@ -17,9 +17,7 @@ plug('nvim-telescope/telescope-fzf-native.nvim',
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   })
 plug('neoclide/coc.nvim', { ['branch'] = 'release' })
-plug('nvim-lua/plenary.nvim')
 plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
 
 if UsingHomePC then
   plug('rebelot/kanagawa.nvim')
@@ -27,6 +25,10 @@ else
   plug('folke/tokyonight.nvim')
 end
 
-plug("NeogitOrg/neogit")
+plug("NeogitOrg/neogit", { ["branch"] = "master" })
+-- ***neogitのdependencies****
+plug('nvim-lua/plenary.nvim')
 plug("sindrets/diffview.nvim")
+plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
+-- ***neogitのdependencies****
 vim.call('plug#end')
