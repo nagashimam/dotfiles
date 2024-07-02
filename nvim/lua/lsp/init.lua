@@ -1,4 +1,3 @@
-require("lsp.util")
 require("lsp.completion")
 require("lsp.lua")
 

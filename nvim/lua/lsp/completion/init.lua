@@ -6,34 +6,24 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
+  mapping = {
+    ['<C-i>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-  }),
-  --うまくAngularの設定が出来なかったのでCOCでごまかす
-  --sources = cmp.config.sources({
-  --{ name = 'nvim_lsp' },
-  --}, {
-  --{ name = 'buffer' },
-  --})
-})
-
-cmp.setup.filetype('gitcommit', {
+    ['<C-j>'] = cmp.mapping(function() cmp.select_next_item() end, { 'i', 's' }),
+    ['<C-k>'] = cmp.mapping(function() cmp.select_prev_item() end, { 'i', 's' }),
+  },
   sources = cmp.config.sources({
-    { name = 'git' },
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
   }, {
     { name = 'buffer' },
-  }),
+  })
 })
+
 
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
@@ -48,6 +38,5 @@ cmp.setup.cmdline(':', {
     { name = 'path' }
   }, {
     { name = 'cmdline' }
-  }),
-  matching = { disallow_symbol_nonprefix_matching = false }
+  })
 })
