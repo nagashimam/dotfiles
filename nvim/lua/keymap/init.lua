@@ -13,12 +13,6 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fl', builtin.treesitter, {})
 
-local function toggleRelativeNumber()
-  local param = (vim.wo.relativenumber and "norelativenumber") or "relativenumber"
-  vim.cmd("set " .. param)
-end
-vim.keymap.set("n", "<leader>rn", function () toggleRelativeNumber() end)
-
 vim.keymap.set({ "n", "v", "o" }, "fj,", "f、")
 vim.keymap.set({ "n", "v", "o" }, "Fj,", "F、")
 vim.keymap.set({ "n", "v", "o" }, "tj,", "t、")
@@ -39,7 +33,6 @@ local function findOne(command, chars)
     end
   end
 end
-
 vim.keymap.set({ "n", "v", "o" }, [[fj"]], function () findOne("f", { "「", "『", "』", "」" }) end)
 vim.keymap.set({ "n", "v", "o" }, [[Fj"]], function () findOne("F", { "」", "』", "『", "「" }) end)
 vim.keymap.set({ "n", "v", "o" }, [[tj"]], function () findOne("t", { "「", "『", "』", "」" }) end)
@@ -59,11 +52,3 @@ vim.keymap.set("n", "]T", [[<Cmd>:tablast<CR>]])
 -- TODO;Zellijのキーとバッティングしているのをなんとかする
 vim.keymap.set("n", "<leader>j", "<C-i>")
 vim.keymap.set("n", "<leader>k", "<C-o>")
-vim.keymap.set("c", "<leader>j", "<Down>")
-vim.keymap.set("c", "<leader>k", "<Up>")
-
-
-function _G.check_back_space()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end

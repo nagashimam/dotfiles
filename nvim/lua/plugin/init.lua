@@ -12,12 +12,6 @@ plug('hrsh7th/cmp-vsnip')
 plug('hrsh7th/vim-vsnip')
 -- ***補完のためのplugin***
 
-plug('nvim-tree/nvim-web-devicons')
-plug('nvim-telescope/telescope-fzf-native.nvim',
-  {
-    ['do'] =
-    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-  })
 plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 if UsingHomePC then
@@ -31,5 +25,13 @@ plug("NeogitOrg/neogit", { ["branch"] = "master" })
 plug('nvim-lua/plenary.nvim')
 plug("sindrets/diffview.nvim")
 plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
+-- ***telescopeのdependencies***
+plug('nvim-telescope/telescope-fzf-native.nvim',
+  {
+    ['do'] =
+    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  })
+plug('nvim-tree/nvim-web-devicons')
+-- ***telescopeのdependencies***
 -- ***neogitのdependencies****
 vim.call('plug#end')
