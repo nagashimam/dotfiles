@@ -52,3 +52,9 @@ vim.keymap.set("n", "]T", [[<Cmd>:tablast<CR>]])
 -- TODO;Zellijのキーとバッティングしているのをなんとかする
 vim.keymap.set("n", "<leader>j", "<C-i>")
 vim.keymap.set("n", "<leader>k", "<C-o>")
+
+vim.keymap.set("n", "]d", [[<Cmd>lua vim.lsp.buf.definition()<CR>]])
+vim.keymap.set("n", "]r", [[<Cmd>lua vim.lsp.buf.references()<CR>]])
+vim.keymap.set("n", "]i", [[<Cmd>lua vim.lsp.buf.implementation()<CR>]])
+vim.keymap.set("n", "K", [[<Cmd>lua vim.lsp.buf.hover()<CR>]])
+vim.keymap.set("n", "<C-K>", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]])
