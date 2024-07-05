@@ -6,3 +6,11 @@ require('lspconfig').angularls.setup {
     new_config.cmd = cmd
   end,
 }
+
+vim.cmd([[
+  augroup fmt_and_lint
+    autocmd!
+    autocmd BufWritePost *.ts,*.html,*.css,*.scss silent! execute '!npx prettier --write %'
+    autocmd BufWritePost *.ts,*.html,*.css,*.scss silent! execute '!npx eslint --fix %'
+  augroup END
+]])
