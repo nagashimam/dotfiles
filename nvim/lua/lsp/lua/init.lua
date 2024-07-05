@@ -24,7 +24,9 @@ require 'lspconfig'.lua_ls.setup {
   },
 }
 
-if not LuaAutoCmdSet then
-  LuaAutCmdSet = true
-  vim.cmd("autocmd BufWritePre *.lua lua vim.lsp.buf.format()")
-end
+vim.cmd([[
+  augroup format_lua
+    autocmd!
+    autocmd BufWritePost *.lua silent! lua vim.lsp.buf.format()
+  augroup END
+]])
