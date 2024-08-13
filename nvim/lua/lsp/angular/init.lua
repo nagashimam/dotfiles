@@ -5,12 +5,14 @@ require('lspconfig').angularls.setup {
   on_new_config = function(new_config, _new_root_dir)
     new_config.cmd = cmd
   end,
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      buffer = bufnr,
+      command = "silent! execute '!npx prettier --write %'",
+    })
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      buffer = bufnr,
+      command = "silent! execute '!npx eslint --fix %'",
+    })
+  end,
 }
-
-vim.cmd([[
-  augroup fmt_and_lint
-    autocmd!
-    autocmd BufWritePost *.ts,*.html,*.css,*.scss silent! execute '!npx prettier --write %'
-    autocmd BufWritePost *.ts,*.html,*.css,*.scss silent! execute '!npx eslint --fix %'
-  augroup END
-]])
