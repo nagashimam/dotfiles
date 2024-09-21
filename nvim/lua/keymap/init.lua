@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>,", [[<Cmd>:nohl<CR>]])
 vim.keymap.set("i", "jj", "<Esc>")

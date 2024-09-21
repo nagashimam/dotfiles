@@ -20,10 +20,17 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
   }, {
+    { name = 'nvlime' },
     { name = 'buffer' },
+    { name = 'path' },
   })
 })
 
+cmp.setup.filetype({ 'lisp' }, {
+  sources = {
+    { name = "nvlime" }
+  }
+})
 
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),

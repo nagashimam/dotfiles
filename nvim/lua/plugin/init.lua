@@ -34,4 +34,11 @@ plug('nvim-telescope/telescope-fzf-native.nvim',
 plug('nvim-tree/nvim-web-devicons')
 -- ***telescopeのdependencies***
 -- ***neogitのdependencies****
+
+plug('monkoose/nvlime')
+-- ***nvlimeのdependencies****
+plug('monkoose/parsley')
+plug('kovisoft/paredit')
+-- ***nvlimeのdependencies****
+
 vim.call('plug#end')
