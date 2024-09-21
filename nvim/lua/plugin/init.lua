@@ -14,11 +14,8 @@ plug('hrsh7th/vim-vsnip')
 
 plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
-if UsingHomePC then
-  plug('rebelot/kanagawa.nvim')
-else
-  plug('folke/tokyonight.nvim')
-end
+plug('folke/tokyonight.nvim')
+plug('rebelot/kanagawa.nvim')
 
 plug("NeogitOrg/neogit", { ["branch"] = "master" })
 -- ***neogitのdependencies****
