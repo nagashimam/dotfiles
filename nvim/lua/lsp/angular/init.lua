@@ -1,14 +1,19 @@
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", vim.fn.getcwd() .. "/node_modules", "--ngProbeLocations",
   "/home/nagashima/.nodenv/versions/20.15.0/lib/node_modules" }
 
-local is_running_prettier = false;
-local is_running_eslint = false;
+local running_prettier = false;
+local running_eslint = false;
+local linting = false;
 
 local function runPrettier()
-  is_running_prettier = true;
+  running_prettier = true;
+  linting = true;
   local function resume()
-    vim.cmd('edit')
-    is_running_prettier = false;
+    running_prettier = false;
+    if not running_eslint then
+      vim.cmd('edit');
+      linting = false;
+    end
   end;
   vim.fn.jobstart("npx prettier --write " .. vim.fn.expand('%'), {
     on_exit = resume,
@@ -17,9 +22,14 @@ local function runPrettier()
 end
 
 local function runESLint()
+  running_eslint = true;
+    linting = true;
   local function resume()
-    vim.cmd('edit')
-    is_running_eslint = false;
+    running_eslint = false;
+    if not running_prettier then
+      vim.cmd('edit');
+      linting = false;
+    end
   end;
   vim.fn.jobstart("npx eslint --fix " .. vim.fn.expand('%'), {
     on_exit = resume,
@@ -37,10 +47,8 @@ require('lspconfig').angularls.setup {
     vim.api.nvim_create_autocmd("BufWritePost", {
       buffer = bufnr,
       callback = function()
-        if not is_running_prettier then
+        if not linting then
           runPrettier();
-        end
-        if not is_running_eslint then
           runESLint();
         end
       end,
