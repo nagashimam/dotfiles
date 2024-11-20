@@ -1,10 +1,12 @@
-UsingHomePC = os.getenv("HOME_PC")
+local UsingHomePC = os.getenv("HOME_PC")
 
 require("plugin")
-require("lisp")
+require("lsp")
+require("linter")
+require("style")
 
-require("other")
 require("keymap")
+require("other")
 
 require("ui")
 if UsingHomePC then
