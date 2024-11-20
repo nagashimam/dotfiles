@@ -3,6 +3,9 @@ coc/extensions/coc-json-data/json-schema-cache/**
 coc/memos.json
 fish/fish_variables
 **/*.log
-pulse
+dconf
+configstore
+menus
 google-chrome
 mimeapps.list
+pulse
