@@ -1,6 +1,2 @@
 require("lsp.completion")
-require("lsp.lua")
-require("lsp.angular")
-require("lsp.html")
-require("lsp.css")
-require("lsp.typescript")
+require("lsp.mason")

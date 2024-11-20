@@ -1,44 +1,43 @@
-vim.call('plug#begin')
-local plug = vim.fn['plug#']
+vim.call("plug#begin")
+local plug = vim.fn["plug#"]
+plug("williamboman/mason.nvim")
+plug("williamboman/mason-lspconfig.nvim")
+plug("neovim/nvim-lspconfig")
+plug("mfussenegger/nvim-lint")
+plug("mhartington/formatter.nvim")
 -- ***補完のエンジン(cmp-XXX)とソース(XXX)
-plug('neovim/nvim-lspconfig')
-plug('hrsh7th/nvim-cmp')
-plug('hrsh7th/cmp-nvim-lsp')
-plug('hrsh7th/cmp-buffer')
-plug('hrsh7th/cmp-path')
-plug('hrsh7th/cmp-cmdline')
-plug('hrsh7th/cmp-vsnip')
+plug("hrsh7th/nvim-cmp")
+plug("hrsh7th/cmp-nvim-lsp")
+plug("hrsh7th/cmp-buffer")
+plug("hrsh7th/cmp-path")
+plug("hrsh7th/cmp-cmdline")
+plug("hrsh7th/cmp-vsnip")
 -- VSCodeのスニペットを使えるようにする
-plug('hrsh7th/vim-vsnip')
+plug("hrsh7th/vim-vsnip")
 -- ***補完のためのplugin***
 
-plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 
-if UsingHomePC then
-  plug('rebelot/kanagawa.nvim')
-else
-  plug('folke/tokyonight.nvim')
-end
+plug("folke/tokyonight.nvim")
+plug("rebelot/kanagawa.nvim")
 
 plug("NeogitOrg/neogit", { ["branch"] = "master" })
 -- ***neogitのdependencies****
-plug('nvim-lua/plenary.nvim')
+plug("nvim-lua/plenary.nvim")
 plug("sindrets/diffview.nvim")
-plug('nvim-telescope/telescope.nvim')
+plug("nvim-telescope/telescope.nvim")
 -- ***telescopeのdependencies***
-plug('nvim-telescope/telescope-fzf-native.nvim',
-  {
-    ['do'] =
-    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-  })
-plug('nvim-tree/nvim-web-devicons')
+plug("nvim-telescope/telescope-fzf-native.nvim", {
+  ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+})
+plug("nvim-tree/nvim-web-devicons")
 -- ***telescopeのdependencies***
 -- ***neogitのdependencies****
 
-plug('monkoose/nvlime')
+plug("monkoose/nvlime")
 -- ***nvlimeのdependencies****
-plug('monkoose/parsley')
-plug('kovisoft/paredit')
+plug("monkoose/parsley")
+plug("kovisoft/paredit")
 -- ***nvlimeのdependencies****
-
-vim.call('plug#end')
+--]]
+vim.call("plug#end")
