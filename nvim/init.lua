@@ -1,6 +1,7 @@
 UsingHomePC = os.getenv("HOME_PC")
 
 require("plugin")
+require("lisp")
 
 require("other")
 require("keymap")
