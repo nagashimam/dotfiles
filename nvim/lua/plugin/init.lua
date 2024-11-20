@@ -21,7 +21,7 @@ plug("NeogitOrg/neogit", { ["branch"] = "master" })
 -- ***neogitのdependencies****
 plug('nvim-lua/plenary.nvim')
 plug("sindrets/diffview.nvim")
-plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
+plug('nvim-telescope/telescope.nvim')
 -- ***telescopeのdependencies***
 plug('nvim-telescope/telescope-fzf-native.nvim',
   {
