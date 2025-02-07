@@ -1,3 +1,4 @@
+require("mason").setup()
 local util = require('util')
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
