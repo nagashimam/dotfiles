@@ -2,6 +2,7 @@ UsingHomePc = os.getenv("HOME_PC")
 require("plugin")
 require("lsp")
 require("completion")
+require("keymap")
 require("style")
 
 if UsingHomePc then
