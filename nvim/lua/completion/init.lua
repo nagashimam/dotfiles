@@ -4,9 +4,11 @@ require("copilot").setup({
 })
 
 require("copilot_cmp").setup()
-require("CopilotChat").setup()
+require("CopilotChat").setup({
+  show_help = true,
+})
 
-local cmp = require('cmp')
+local cmp = require("cmp")
 
 cmp.setup({
   snippet = {
@@ -19,8 +21,8 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = {
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-i>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
@@ -35,12 +37,12 @@ cmp.setup({
     end, { "i", "s" }),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'copilot' },
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+    { name = "copilot" },
   }, {
-    { name = 'buffer' },
-  })
+    { name = "buffer" },
+  }),
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
