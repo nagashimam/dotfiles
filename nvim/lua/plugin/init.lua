@@ -28,4 +28,13 @@ if UsingHomePc then
 else
   Plug("folke/tokyonight.nvim")
 end
+
+-- telescope
+Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
+Plug(
+  "nvim-telescope/telescope-fzf-native.nvim",
+  { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
+)
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-tree/nvim-web-devicons")
 vim.call("plug#end")
