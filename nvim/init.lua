@@ -4,6 +4,7 @@ require("lsp")
 require("completion")
 require("keymap")
 require("style")
+require("other")
 
 if UsingHomePc then
   require("home_colorscheme")
