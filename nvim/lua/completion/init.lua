@@ -6,13 +6,19 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = {
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-i>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<C-j>"] = cmp.mapping(function()
       cmp.select_next_item()
     end, { "i", "s" }),
@@ -24,16 +30,8 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "vsnip" },
   }, {
-    { name = "nvlime" },
     { name = "buffer" },
-    { name = "path" },
   }),
-})
-
-cmp.setup.filetype({ "lisp" }, {
-  sources = {
-    { name = "nvlime" },
-  },
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
@@ -47,7 +45,6 @@ cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = "path" },
-  }, {
     { name = "cmdline" },
   }),
 })

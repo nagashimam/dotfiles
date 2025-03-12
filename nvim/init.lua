@@ -1,18 +1,14 @@
-local UsingHomePC = os.getenv("HOME_PC")
-
+UsingHomePc = os.getenv("HOME_PC")
 require("plugin")
 require("lsp")
-require("linter")
-require("style")
-
+require("completion")
 require("keymap")
+require("style")
+require("linter")
 require("other")
 
-require("ui")
-if UsingHomePC then
+if UsingHomePc then
   require("home_colorscheme")
 else
   require("colorscheme")
 end
-
-require("lsp")

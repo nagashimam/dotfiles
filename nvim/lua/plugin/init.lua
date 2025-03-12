@@ -1,43 +1,43 @@
+local Plug = vim.fn["plug#"]
+
 vim.call("plug#begin")
-local plug = vim.fn["plug#"]
-plug("williamboman/mason.nvim")
-plug("williamboman/mason-lspconfig.nvim")
-plug("neovim/nvim-lspconfig")
-plug("mfussenegger/nvim-lint")
-plug("mhartington/formatter.nvim")
--- ***補完のエンジン(cmp-XXX)とソース(XXX)
-plug("hrsh7th/nvim-cmp")
-plug("hrsh7th/cmp-nvim-lsp")
-plug("hrsh7th/cmp-buffer")
-plug("hrsh7th/cmp-path")
-plug("hrsh7th/cmp-cmdline")
-plug("hrsh7th/cmp-vsnip")
--- VSCodeのスニペットを使えるようにする
-plug("hrsh7th/vim-vsnip")
--- ***補完のためのplugin***
+Plug("nvim-lua/plenary.nvim")
 
-plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+-- Completion
+Plug("neovim/nvim-lspconfig")
+Plug("hrsh7th/nvim-cmp")
+Plug("hrsh7th/cmp-nvim-lsp")
+Plug("hrsh7th/cmp-buffer")
+Plug("hrsh7th/cmp-path")
+Plug("hrsh7th/cmp-cmdline")
+Plug("hrsh7th/cmp-vsnip")
+Plug("hrsh7th/vim-vsnip")
 
-plug("folke/tokyonight.nvim")
-plug("rebelot/kanagawa.nvim")
+-- Formatter
+Plug("williamboman/mason.nvim")
+Plug("williamboman/mason-lspconfig.nvim")
+Plug("mhartington/formatter.nvim")
 
-plug("NeogitOrg/neogit", { ["branch"] = "master" })
--- ***neogitのdependencies****
-plug("nvim-lua/plenary.nvim")
-plug("sindrets/diffview.nvim")
-plug("nvim-telescope/telescope.nvim")
--- ***telescopeのdependencies***
-plug("nvim-telescope/telescope-fzf-native.nvim", {
-  ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-})
-plug("nvim-tree/nvim-web-devicons")
--- ***telescopeのdependencies***
--- ***neogitのdependencies****
+-- colorscheme
+if UsingHomePc then
+  Plug("rebelot/kanagawa.nvim")
+else
+  Plug("folke/tokyonight.nvim")
+end
 
-plug("monkoose/nvlime")
--- ***nvlimeのdependencies****
-plug("monkoose/parsley")
-plug("kovisoft/paredit")
--- ***nvlimeのdependencies****
---]]
+-- telescope
+Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
+Plug(
+  "nvim-telescope/telescope-fzf-native.nvim",
+  { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
+)
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-tree/nvim-web-devicons")
+
+-- linter
+Plug("mfussenegger/nvim-lint")
+
+-- neogit
+Plug("NeogitOrg/neogit")
+Plug("sindrets/diffview.nvim")
 vim.call("plug#end")
