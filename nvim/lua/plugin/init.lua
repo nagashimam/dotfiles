@@ -38,6 +38,9 @@ Plug(
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("nvim-tree/nvim-web-devicons")
 
+-- linter
+Plug("mfussenegger/nvim-lint")
+
 -- neogit
 Plug("NeogitOrg/neogit")
 Plug("sindrets/diffview.nvim")
