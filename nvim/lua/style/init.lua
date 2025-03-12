@@ -1,14 +1,26 @@
+local util = require("formatter.util")
+local defaults = require("formatter.defaults")
+
 require("formatter").setup({
   logging = false,
   filetype = {
     lua = { require("formatter.filetypes.lua").stylua },
+    html = { require("formatter.filetypes.html").prettier },
+    scss = { util.withl(defaults.prettier, "scss") },
+    css = { require("formatter.filetypes.css").prettier },
+    javascript = {
+      require("formatter.filetypes.javascript").prettier,
+      require("formatter.filetypes.javascript").biome,
+    },
+    typescript = {
+      require("formatter.filetypes.typescript").prettier,
+      require("formatter.filetypes.typescript").biome,
+    },
   },
 })
 
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-augroup("__formatter__", { clear = true })
-autocmd("BufWritePost", {
-  group = "__formatter__",
-  command = ":FormatWrite",
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    vim.cmd("FormatWrite")
+  end,
 })
