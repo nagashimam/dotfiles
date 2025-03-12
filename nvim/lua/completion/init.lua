@@ -1,13 +1,3 @@
-require("copilot").setup({
-  suggestion = { enabled = false },
-  panel = { enabled = false },
-})
-
-require("copilot_cmp").setup()
-require("CopilotChat").setup({
-  show_help = true,
-})
-
 local cmp = require("cmp")
 
 cmp.setup({
@@ -39,7 +29,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "vsnip" },
-    { name = "copilot" },
   }, {
     { name = "buffer" },
   }),

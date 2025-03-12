@@ -17,10 +17,6 @@ vim.keymap.set("n", "<leader>e", function()
     additional_args = additional_args,
   })
 end, {})
-vim.keymap.set("n", "<leader>c", function()
-  local actions = require("CopilotChat.actions")
-  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-end)
 
 vim.keymap.set("n", "<C-C>", function()
   vim.lsp.buf.code_action()

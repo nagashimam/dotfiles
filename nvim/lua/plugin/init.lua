@@ -1,10 +1,6 @@
 local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin")
--- Copilot
-Plug("zbirenbaum/copilot.lua")
-Plug("zbirenbaum/copilot-cmp")
-Plug("CopilotC-Nvim/CopilotChat.nvim")
 Plug("nvim-lua/plenary.nvim")
 
 -- Completion
