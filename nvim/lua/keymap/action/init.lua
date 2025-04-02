@@ -33,3 +33,7 @@ end)
 vim.keymap.set("n", "<C-K>", function()
   vim.lsp.buf.signature_help()
 end)
+
+vim.keymap.set("n", "<C-D>", function()
+  vim.diagnostic.open_float(nil, { focusable = false })
+end)
