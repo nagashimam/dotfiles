@@ -16,6 +16,7 @@ require("formatter").setup({
       require("formatter.filetypes.typescript").prettier,
       require("formatter.filetypes.typescript").biome,
     },
+    jsonc = { require("formatter.filetypes.json").prettier },
   },
 })
 
