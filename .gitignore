@@ -25,3 +25,6 @@ user-dirs.locale
 xdg-terminals.list
 obsidian
 **/*.copy
+env.sh
+fish-ai.ini
+JetBrains
