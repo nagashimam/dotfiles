@@ -1,113 +1,57 @@
 return {
-	{
+	"neovim/nvim-lspconfig",
+	dependencies = {
 		"williamboman/mason.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
 		"williamboman/mason-lspconfig.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "williamboman/mason.nvim" },
-		opts = {
+
+		"hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+	},
+	config = function()
+		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"html",
-				"cssls",
 				"ts_ls",
-				"angularls",
+				"biome",
+				"jsonls",
+				"yamlls",
+				"emmet_ls",
+				"gopls",
 				"lua_ls",
 			},
-		},
-	},
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		event = "VeryLazy",
-		dependencies = { "williamboman/mason.nvim" },
-		opts = {
-			ensure_installed = {
-				"prettier", -- Prettier for formatting
-				"stylua", -- Lua formatter
-			},
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" }, -- lazy load nvim-lspconfig
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp", event = { "BufReadPre", "BufNewFile" } },
-			"williamboman/mason-lspconfig.nvim",
-		},
-		config = function()
-			vim.o.updatetime = 200
+		})
 
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		local function prev_diagnostic()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end
 
-			local on_attach = function(_, bufnr)
-				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				-- --
-				vim.keymap.set("n", "]r", vim.lsp.buf.references, bufopts)
-				vim.keymap.set("n", "]i", vim.lsp.buf.implementation, bufopts)
+		local function next_diagnostic()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end
 
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-				vim.keymap.set("n", "<C-c>", vim.lsp.buf.code_action, bufopts)
-				vim.keymap.set("n", "<C-r>", vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-			end
+		local function format_code()
+			vim.lsp.buf.format({ async = false })
+		end
 
-			local lspconfig = require("lspconfig")
-			local mason_lspconfig = require("mason-lspconfig")
+		vim.keymap.set("n", "]d", vim.lsp.buf.definition, { desc = "Go to Definition" })
+		vim.keymap.set("n", "]r", vim.lsp.buf.references, { desc = "Go to References" })
+		vim.keymap.set("n", "]t", vim.lsp.buf.type_definition, { desc = "Go to Type Definition" })
 
-			local servers = {
-				"html",
-				"cssls",
-				"ts_ls",
-				"angularls",
-				"lua_ls",
-			}
+		vim.keymap.set("n", "[[", prev_diagnostic, { desc = "Go to previous diagnostic" })
+		vim.keymap.set("n", "]]", next_diagnostic, { desc = "Go to next diagnostic" })
 
-			for _, server in ipairs(servers) do
-				if server == "lua_ls" then
-					lspconfig.lua_ls.setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						root_dir = function(fname)
-							return vim.fn.stdpath("config")
-						end,
-						settings = {
-							Lua = {
-								runtime = {
-									version = "Lua51",
-								},
-								diagnostics = {
-									globals = { "vim" },
-								},
-								workspace = {
-									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-										[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-										[vim.fn.stdpath("config") .. "/lua"] = true,
-									},
-									checkThirdParty = false,
-								},
-								telemetry = {
-									enable = false,
-								},
-							},
-						},
-					})
-				else
-					lspconfig[server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-					})
-				end
-			end
-		end,
-	},
+		vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+		vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, { desc = "Code Action" })
+		vim.keymap.set("n", "<leader>o", format_code, { desc = "Format Code" })
+		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic float" })
+
+		vim.diagnostic.config({
+			virtual_text = true,
+			signs = true,
+			underline = true,
+			update_in_insert = false,
+		})
+	end,
 }
