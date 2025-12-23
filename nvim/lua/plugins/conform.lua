@@ -1,22 +1,46 @@
 return {
-	{
-		"stevearc/conform.nvim",
-		opts = {
+	"stevearc/conform.nvim",
+	event = { "BufWritePre", "BufNewFile", "BufReadPost" },
+	dependencies = {
+		"williamboman/mason.nvim",
+		"jay-bails/mason-tool-installer.nvim",
+	},
+	config = function()
+		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				rust = { "rustfmt", lsp_format = "fallback" },
-				html = { "prettierd", "prettier", stop_after_first = true },
-				css = { "prettierd", "prettier", stop_after_first = true },
-				scss = { "prettierd", "prettier", stop_after_first = true },
-				javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
-				typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
-				json = { "biome", "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
+				json = { "biome" },
+				yaml = { "biome" },
+				-- Go: Let gopls handle imports + formatting (via gofumpt)
+				vue = { "prettier" },
 			},
+
 			format_on_save = {
-				lsp_format = "fallback",
 				timeout_ms = 500,
+				lsp_format = "fallback",
+				async = false,
 			},
-		},
-		event = { "BufReadPost", "BufNewFile" },
-	},
+
+			keys = {
+				{
+					"<leader>m",
+					function()
+						require("conform").format({
+							lsp_format = "fallback",
+							async = false,
+							timeout_ms = 500,
+						})
+					end,
+					mode = { "n", "v" },
+					desc = "Format file or range (Conform)",
+				},
+			},
+		})
+	end,
 }
