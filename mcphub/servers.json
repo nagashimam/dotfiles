@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant"
+      ],
+      "env": {},
+      "autoApprove": [
+        "goto_definition",
+        "find_references",
+        "get_symbols",
+        "search_symbols",
+        "get_diagnostics",
+        "get_hover",
+        "get_signature_help"
+      ]
+    }
+  }
+}

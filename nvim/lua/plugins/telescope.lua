@@ -1,40 +1,42 @@
+local function grep_by_extension()
+	local builtin = require("telescope.builtin")
+	local extension = vim.fn.input("extension: ")
+	if extension and extension ~= "" then
+		builtin.live_grep({
+			additional_args = function()
+				return { "--glob", "*." .. extension }
+			end,
+		})
+	end
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		{ "nvim-treesitter/nvim-treesitter", branch = "master", lazy = false, build = ":TSUpdate" },
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+			build = "make",
+			cond = function()
+				return vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1
+			end,
 		},
 	},
 	keys = {
-		{ "<leader>f", "<cmd>Telescope find_files<cr>", "n" },
-		{ "<leader>g", "<cmd>Telescope live_grep<cr>", "n" },
-		{ "<leader>bf", "<cmd>Telescope buffers<cr>", "n" },
-		{ "<leader>t", "<cmd>Telescope treesitter<cr>", "n" },
-		{ "<leader>br", "<cmd>Telescope git_branches<cr>", "n" },
-		{
-			"<leader>e",
-			function()
-				local builtin = require("telescope.builtin")
-				local additional_args = function()
-					local extension = vim.fn.input("extension: ")
-					return { "--glob", "*." .. extension }
-				end
-				builtin.live_grep({
-					grep_open_files = true,
-					additional_args = additional_args,
-				})
-			end,
-			"n",
-		},
+		{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+		{ "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Grep in files" },
+		{ "<leader>te", grep_by_extension, desc = "Grep by extension" },
+		{ "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Find in buffers" },
+		{ "<leader>tr", "<cmd>Telescope git_branches<cr>", desc = "Find in git branches" },
 	},
 	config = function()
 		local telescope = require("telescope")
-		telescope.setup({})
+		telescope.setup({
+			defaults = {
+				file_ignore_patterns = { "node_modules", "target", ".git" },
+			},
+		})
 		telescope.load_extension("fzf")
 	end,
 }

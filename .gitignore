@@ -29,3 +29,13 @@ env.sh
 fish-ai.ini
 JetBrains
 nvim/lazy-lock.json
+fish/conf.d/uv.env.fish
+gcloud/
+go/
+prompt-draft.txt
+specs/
+uv/
+bk
+git
+Google
+.serena
