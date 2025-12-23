@@ -1,0 +1,5 @@
+- Uses TypeScript for type safety
+- Follows Prettier formatting rules: no semicolons, single quotes, print width 100
+- ESLint with Vue, TypeScript, Playwright, and Vitest plugins
+- Recommended to use Volar for VS Code for .vue type support
+- Folders: src/ for source code, src/router for routing, src/__tests__ for tests

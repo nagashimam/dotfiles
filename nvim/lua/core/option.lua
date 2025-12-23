@@ -57,3 +57,6 @@ vim.opt.expandtab = true
 
 -- UI
 vim.opt.wrap = true
+
+-- Refresh on disk change
+vim.o.autoread = true

@@ -24,11 +24,11 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-		{ "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Grep in files" },
-		{ "<leader>e", grep_by_extension, desc = "Grep by extension" },
-		{ "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find in buffers" },
-		{ "<leader>br", "<cmd>Telescope git_branches<cr>", desc = "Find in git branches" },
+		{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+		{ "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Grep in files" },
+		{ "<leader>te", grep_by_extension, desc = "Grep by extension" },
+		{ "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Find in buffers" },
+		{ "<leader>tr", "<cmd>Telescope git_branches<cr>", desc = "Find in git branches" },
 	},
 	config = function()
 		local telescope = require("telescope")

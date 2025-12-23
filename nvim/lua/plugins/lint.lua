@@ -3,11 +3,11 @@ return {
 	event = { "BufWritePost", "BufReadPost", "BufNewFile" },
 	opts = {
 		linters_by_ft = {
-			html = { "biomejs" },
-			css = { "biomejs" },
-			scss = { "biomejs" },
-			javascript = { "biomejs" },
-			typescript = { "biomejs" },
+			html = { "eslint" },
+			css = { "eslint" },
+			scss = { "eslint" },
+			javascript = { "eslint" },
+			typescript = { "eslint" },
 			lua = { "luacheck" },
 		},
 		linters = {

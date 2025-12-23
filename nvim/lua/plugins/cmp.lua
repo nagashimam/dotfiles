@@ -19,8 +19,7 @@ return {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 
-				["<C-h>"] = cmp.mapping.complete(),
-				["<C-l>"] = cmp.mapping.abort(),
+				["<C-o>"] = cmp.mapping.complete(),
 
 				["<C-j>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then

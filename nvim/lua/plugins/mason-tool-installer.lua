@@ -4,12 +4,16 @@ return {
 	event = "VeryLazy",
 	opts = {
 		ensure_installed = {
+			-- Formatters
 			"biome",
 			"stylua",
 			"goimports",
 			"gofumpt",
+
+			-- Linters
 			"eslint_d",
 			"shellcheck",
+			-- Note: Vue.js support via ts_ls with @vue/typescript-plugin (no separate vue_ls)
 		},
 	},
 }

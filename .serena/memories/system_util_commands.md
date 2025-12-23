@@ -1,0 +1,6 @@
+- Use git for version control
+- Use standard Linux utilities: ls, cd, grep, find, etc.
+- Use npm scripts for all project tasks
+- Follow Vue and TypeScript best practices
+- Use Volar extension in VS Code for best .vue support
+- Use Prettier and ESLint for code style enforcement

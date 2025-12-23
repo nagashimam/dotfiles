@@ -1,0 +1,10 @@
+- src/: main source code
+  - main.ts: app entrypoint
+  - App.vue, Todo.vue: main components
+  - router/: Vue Router setup
+  - __tests__/: unit tests
+- e2e/: end-to-end tests (referenced in Playwright config)
+- config files: vite.config.ts, eslint.config.ts, playwright.config.ts, vitest.config.ts, tsconfig*.json
+- README.md: project instructions
+- .prettierrc.json: Prettier config
+- package.json: scripts and dependencies

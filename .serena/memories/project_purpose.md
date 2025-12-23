@@ -1,0 +1,1 @@
+This project is a simple Todo application built with Vue 3 and Vite. It is intended as a learning project for a beginner in Vue.js, focusing on the basics of the framework.

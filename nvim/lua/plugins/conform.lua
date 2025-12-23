@@ -9,15 +9,16 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "biome" },
-				typescript = { "biome" },
-				javascriptreact = { "biome" },
-				typescriptreact = { "biome" },
-				css = { "biome" },
-				html = { "biome" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 				json = { "biome" },
 				yaml = { "biome" },
-				go = { "goimports", "gofmt" },
+				-- Go: Let gopls handle imports + formatting (via gofumpt)
+				vue = { "prettier" },
 			},
 
 			format_on_save = {

@@ -1,0 +1,8 @@
+- Framework: Vue 3
+- Build tool: Vite
+- Language: TypeScript
+- Router: vue-router
+- Unit Testing: Vitest
+- E2E Testing: Playwright
+- Linting: ESLint
+- Formatting: Prettier

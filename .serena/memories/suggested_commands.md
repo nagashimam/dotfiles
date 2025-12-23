@@ -1,0 +1,9 @@
+- Install dependencies: npm install
+- Start dev server: npm run dev
+- Build for production: npm run build
+- Type check: npm run type-check
+- Lint: npm run lint
+- Format: npm run format
+- Run unit tests: npm run test:unit
+- Run e2e tests: npm run test:e2e
+- Preview production build: npm run preview
