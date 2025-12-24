@@ -8,7 +8,7 @@ return {
 			scss = { "eslint" },
 			javascript = { "eslint" },
 			typescript = { "eslint" },
-			lua = { "luacheck" },
+			lua = { "selene" },
 		},
 		linters = {
 			luacheck = {
@@ -19,7 +19,6 @@ return {
 	config = function(_, opts)
 		local lint = require("lint")
 		lint.linters_by_ft = opts.linters_by_ft
-		lint.linters.luacheck.args = opts.linters.luacheck.args
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 			callback = function()
