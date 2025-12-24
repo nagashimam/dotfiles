@@ -179,10 +179,15 @@ return {
 		vim.keymap.set("n", "[g", prev_diagnostic, { desc = "Go to previous diagnostic" })
 		vim.keymap.set("n", "]g", next_diagnostic, { desc = "Go to next diagnostic" })
 
+		-- LSP keybindings with <leader>l prefix
 		vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 		vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action" })
 		vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostic float" })
+		vim.keymap.set("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<cr>", { desc = "Type Definitions" })
+		vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<cr>", { desc = "Implementations" })
+		vim.keymap.set("n", "<leader>lw", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Workspace Symbols" })
 
 		vim.diagnostic.config({
 			virtual_text = true,
