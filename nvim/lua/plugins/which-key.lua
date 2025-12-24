@@ -63,11 +63,15 @@ return {
 			{ "<leader>tr", desc = "Find in git branches" },
 
 			-- LSP actions
-			{ "<leader>l", group = "LSP" },
+			{ "<leader>l", group = "LSP Code Reading" },
 			{ "<leader>lh", desc = "Hover documentation" },
+			{ "<leader>ls", desc = "Signature help" },
 			{ "<leader>lr", desc = "Rename symbol" },
 			{ "<leader>lc", desc = "Code action" },
 			{ "<leader>ld", desc = "Show diagnostic" },
+			{ "<leader>lt", desc = "Type definitions" },
+			{ "<leader>li", desc = "Implementations" },
+			{ "<leader>lw", desc = "Workspace symbols" },
 
 			-- Git actions (gitsigns)
 			{ "<leader>g", group = "Git" },
