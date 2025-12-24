@@ -1,85 +1,70 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-context", -- Show context at top
 	},
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			-- Install parsers for your languages
-			ensure_installed = {
-				-- Core
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
+		-- List of parsers to install
+		local parsers = {
+			-- Core
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
 
-				-- Web development
-				"javascript",
-				"typescript",
-				"tsx",
-				"vue", -- Essential for Vue.js
-				"html",
-				"css",
+			-- Web development
+			"javascript",
+			"typescript",
+			"tsx",
+			"vue",
+			"html",
+			"css",
 
-				-- Backend
-				"go",
-				"gomod",
-				"gowork",
-				"gosum",
+			-- Backend
+			"go",
+			"gomod",
+			"gowork",
+			"gosum",
 
-				-- Config/Data
-				"json",
-				"yaml",
-				"toml",
+			-- Config/Data
+			"json",
+			"yaml",
+			"toml",
 
-				-- Other
-				"markdown",
-				"markdown_inline",
-				"bash",
-			},
+			-- Other
+			"markdown",
+			"markdown_inline",
+			"bash",
+		}
 
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
+		-- Create a command to install all required parsers
+		vim.api.nvim_create_user_command("TSInstallDeps", function()
+			require("nvim-treesitter").install(parsers)
+		end, {})
 
-			-- Automatically install missing parsers when entering buffer
-			auto_install = true,
+		-- Automatically install missing parsers (optional, can be disabled for speed)
+		-- We defer this to ensure it doesn't block startup
+		vim.defer_fn(function()
+			-- Note: On the main branch, we check for installed parsers differently or just rely on manual install.
+			-- Here we simply provide the command :TSInstallDeps for the user to run.
+			-- If you want auto-install, you can uncomment the next line, but it might verify on every load.
+			-- require("nvim-treesitter").install(parsers)
+		end, 0)
 
-			highlight = {
-				enable = true,
-				-- Disable slow treesitter highlight for large files
-				disable = function(lang, buf)
-					local max_filesize = 100 * 1024 -- 100 KB
-					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-					if ok and stats and stats.size > max_filesize then
-						return true
-					end
-				end,
-
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				additional_vim_regex_highlighting = false,
-			},
-
-			indent = {
-				enable = true,
-				-- Disable for languages with better indent logic
-				disable = { "yaml" },
-			},
-
-			-- Incremental selection
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<CR>",
-					node_incremental = "<CR>",
-					scope_incremental = "<S-CR>",
-					node_decremental = "<BS>",
-				},
-			},
+		-- Enable Treesitter highlighting
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				local ok = pcall(vim.treesitter.start, args.buf)
+				-- If it fails (e.g. no parser), it's fine.
+			end,
 		})
 
-		-- Treesitter context setup (shows function name at top when scrolling)
+		-- Treesitter context setup
+		-- Note: nvim-treesitter-context might also need updates if it breaks with main branch changes.
+		-- Ensure it is loaded after treesitter setup.
 		require("treesitter-context").setup({
 			enable = true,
 			max_lines = 3, -- How many lines the window should span
@@ -93,9 +78,10 @@ return {
 			on_attach = nil,
 		})
 
-		-- Folding based on treesitter
+		-- Folding based on treesitter (using Neovim core API)
 		vim.opt.foldmethod = "expr"
-		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		vim.opt.foldenable = false -- Don't fold by default
 	end,
 }
+
