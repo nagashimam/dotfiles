@@ -16,6 +16,16 @@ return {
 			"eslint_d",
 			"shellcheck",
 			"selene",
+
+			--LSPs
+			"ts_ls",
+			-- "vue_ls",
+			"biome",
+			"jsonls",
+			"yamlls",
+			"emmet_ls",
+			"gopls",
+			"lua_ls",
 		},
 	},
 }

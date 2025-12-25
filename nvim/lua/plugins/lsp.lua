@@ -15,14 +15,6 @@ return {
 
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"ts_ls",
-				-- "vue_ls",
-				"biome",
-				"jsonls",
-				"yamlls",
-				"emmet_ls",
-				"gopls",
-				"lua_ls",
 			},
 		})
 
