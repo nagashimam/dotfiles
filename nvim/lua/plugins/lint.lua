@@ -10,11 +10,6 @@ return {
 			typescript = { "eslint" },
 			lua = { "selene" },
 		},
-		linters = {
-			luacheck = {
-				args = { "--globals", "vim" },
-			},
-		},
 	},
 	config = function(_, opts)
 		local lint = require("lint")

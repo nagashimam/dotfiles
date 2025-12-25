@@ -3,6 +3,8 @@ return {
 	dependencies = { "williamboman/mason.nvim" },
 	event = "VeryLazy",
 	opts = {
+
+		run_on_start = false,
 		ensure_installed = {
 			-- Formatters
 			"biome",
@@ -13,7 +15,7 @@ return {
 			-- Linters
 			"eslint_d",
 			"shellcheck",
-			-- Note: Vue.js support via ts_ls with @vue/typescript-plugin (no separate vue_ls)
+			"selene",
 		},
 	},
 }
