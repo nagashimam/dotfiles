@@ -77,11 +77,5 @@ return {
 			zindex = 20,
 			on_attach = nil,
 		})
-
-		-- Folding based on treesitter (using Neovim core API)
-		vim.opt.foldmethod = "expr"
-		vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		vim.opt.foldenable = false -- Don't fold by default
 	end,
 }
-
