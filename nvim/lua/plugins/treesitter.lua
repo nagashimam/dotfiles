@@ -1,6 +1,7 @@
 -- Treesitter for syntax awareness and code navigation
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main", -- Use main branch, not master
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {

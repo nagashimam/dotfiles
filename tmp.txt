@@ -1,0 +1,7 @@
+bk
+fish
+git
+github-copilot
+nvim
+tmp.txt
+zellij
