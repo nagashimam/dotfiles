@@ -26,19 +26,17 @@ for _, plugin in ipairs(disabled_built_ins) do
 	vim.g["loaded_" .. plugin] = 1
 end
 
-local win32yank_path = vim.fn.exepath("win32yank.exe")
 vim.g.clipboard = {
-	name = "win32yank",
+	name = "OSC 52",
 	copy = {
-		["+"] = win32yank_path .. " -i",
-		["*"] = win32yank_path .. " -i",
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 	},
 	paste = {
-		["+"] = win32yank_path .. " -o",
-		["*"] = win32yank_path .. " -o",
+		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
 	},
 }
-
 vim.opt.clipboard = "unnamedplus"
 
 -- Search
