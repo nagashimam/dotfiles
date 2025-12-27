@@ -2,3 +2,4 @@
 -- Performance: Lazy-load everything possible
 
 require("config.keymaps")
+require("config.navigation")
