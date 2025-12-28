@@ -1,13 +1,15 @@
+vim.env.ESLINT_D_PPID = vim.fn.getpid()
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufWritePost", "BufReadPost", "BufNewFile" },
 	opts = {
 		linters_by_ft = {
-			html = { "eslint" },
-			css = { "eslint" },
-			scss = { "eslint" },
-			javascript = { "eslint" },
-			typescript = { "eslint" },
+			html = { "eslint_d" },
+			css = { "eslint_d" },
+			scss = { "eslint_d" },
+			javascript = { "eslint_d" },
+			typescript = { "eslint_d" },
+			vue = { "eslint_d" },
 			lua = { "selene" },
 		},
 	},

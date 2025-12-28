@@ -11,6 +11,7 @@ return {
 			"stylua",
 			"goimports",
 			"gofumpt",
+			"prettierd",
 
 			-- Linters
 			"eslint_d",
@@ -19,7 +20,7 @@ return {
 
 			--LSPs
 			"ts_ls",
-			-- "vue_ls",
+			"vue_ls",
 			"biome",
 			"jsonls",
 			"yamlls",
