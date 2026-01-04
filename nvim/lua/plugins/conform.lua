@@ -5,6 +5,20 @@ return {
 		"williamboman/mason.nvim",
 		"jay-bails/mason-tool-installer.nvim",
 	},
+	keys = {
+		{
+			"<leader>m",
+			function()
+				require("conform").format({
+					lsp_format = "fallback",
+					async = false,
+					timeout_ms = 500,
+				})
+			end,
+			mode = { "n", "v" },
+			desc = "Format file or range (Conform)",
+		},
+	},
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
@@ -18,28 +32,13 @@ return {
 				json = { "biome" },
 				yaml = { "biome" },
 				-- Go: Let gopls handle imports + formatting (via gofumpt)
-				vue = { "prettier" },
+				vue = { "prettierd" },
 			},
 
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_format = "fallback",
 				async = false,
-			},
-
-			keys = {
-				{
-					"<leader>m",
-					function()
-						require("conform").format({
-							lsp_format = "fallback",
-							async = false,
-							timeout_ms = 500,
-						})
-					end,
-					mode = { "n", "v" },
-					desc = "Format file or range (Conform)",
-				},
 			},
 		})
 	end,

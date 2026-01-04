@@ -7,7 +7,6 @@ return {
 		run_on_start = false,
 		ensure_installed = {
 			-- Formatters
-			"biome",
 			"stylua",
 			"goimports",
 			"gofumpt",
@@ -20,8 +19,7 @@ return {
 
 			--LSPs
 			"ts_ls",
-			"vue_ls",
-			"biome",
+			"biome", -- Formatter + Linter + LSP for JS/TS/JSON
 			"jsonls",
 			"yamlls",
 			"emmet_ls",
