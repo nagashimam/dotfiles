@@ -2,21 +2,27 @@
 
 Your AI-enhanced Neovim development environment is ready.
 
-## ✅ What Was Added
+## ✅ What Was Added/Activated
 
 ### New Plugins (6 total)
 1. **avante.nvim** - AI chat with Claude/Gemini/Copilot support
-2. **copilot.lua** - GitHub Copilot inline code completions
+2. **copilot.lua** - GitHub Copilot inline code completions (now enabled!)
 3. **nvim-treesitter** - Better syntax highlighting and code understanding
 4. **which-key.nvim** - Keybinding discovery (like Zellij for Neovim!)
 5. **gitsigns.nvim** - Git integration with inline changes and blame
 6. **Updated LSP config** - Added Vue.js (vue_ls) support
 
+### Fish Shell AI Functions (now auto-loaded)
+- `cc`, `ccreview`, `cccommit`, `cctest` - Claude Code helpers
+- `gm`, `gvue`, `ggo`, `gerr` - Gemini CLI helpers
+- `learnvue`, `learngo`, `compare` - Learning helpers
+- `aihelp`, `aicheck` - Utility functions
+
 ### New Files Created
 ```
 ~/.config/nvim/lua/plugins/
 ├── ai-avante.lua              # ✨ NEW: AI chat interface
-├── copilot.lua                # ✨ NEW: Inline completions
+├── copilot.lua                # ✅ ENABLED: Inline completions (was commented out)
 ├── treesitter.lua             # ✨ NEW: Syntax & code structure
 ├── which-key.lua              # ✨ NEW: Keybinding helper
 ├── gitsigns.lua               # ✨ NEW: Git integration
@@ -24,6 +30,8 @@ Your AI-enhanced Neovim development environment is ready.
 └── mason-tool-installer.lua   # 🔄 UPDATED: Added vue-language-server
 
 ~/.config/
+├── fish/config.fish           # 🔄 UPDATED: Auto-loads AI functions
+├── fish_ai_functions.fish     # 🔄 FIXED: claude-code → claude
 ├── SETUP_GUIDE.md             # 📖 Step-by-step setup instructions
 ├── KEYBINDINGS_CHEATSHEET.md  # ⌨️  Quick keybinding reference
 ├── AI_WORKFLOW_GUIDE.md       # 🤖 How to use AI tools efficiently
@@ -246,8 +254,8 @@ If Neovim feels slow:
 ### Week 3: Optimize
 - [ ] Customize keybindings (if needed)
 - [ ] Tune AI provider selection
-- [ ] Try Claude Code for bigger tasks
-- [ ] Set up Gemini CLI
+- [ ] Try Claude Code for bigger tasks (use `cc` shortcut)
+- [ ] Use Gemini CLI helpers (`gvue`, `ggo`, `learnvue`, `learngo`)
 - [ ] Refine your workflow
 
 ### Week 4: Master

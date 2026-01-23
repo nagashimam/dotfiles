@@ -4,6 +4,7 @@ Quick reference for your AI-enhanced Neovim setup.
 
 ## 🤖 AI Assistance
 
+### Neovim (Copilot + Avante)
 | Key | Action |
 |-----|--------|
 | `<leader>aa` | Toggle Avante AI chat sidebar |
@@ -11,6 +12,18 @@ Quick reference for your AI-enhanced Neovim setup.
 | `Ctrl+l` | Next Copilot suggestion |
 | `Ctrl+h` | Previous Copilot suggestion |
 | `Ctrl+q` | Dismiss Copilot suggestion |
+
+### Terminal (Fish Shell)
+| Command | Action |
+|---------|--------|
+| `cc <task>` | Quick Claude Code access |
+| `ccreview` | Review git changes with Claude |
+| `cccommit` | Generate commit message |
+| `gvue <topic>` | Vue.js help (Gemini) |
+| `ggo <topic>` | Go help (Gemini) |
+| `learnvue <topic>` | Learn Vue.js concept |
+| `learngo <topic>` | Learn Go concept |
+| `aihelp` | Show all AI commands |
 
 **Tip**: Press `<leader>` (space) and wait to see all available options!
 

@@ -50,7 +50,7 @@ Or manually trigger installation:
 
 This will install:
 - ✓ avante.nvim (AI chat)
-- ✓ copilot.lua (inline completions)
+- ✓ copilot.lua (inline completions - now enabled by default)
 - ✓ nvim-treesitter (syntax)
 - ✓ which-key.nvim (keybinding helper)
 - ✓ gitsigns.nvim (git integration)
@@ -58,6 +58,8 @@ This will install:
 **Note**: The first time may take 5-10 minutes to download and compile everything.
 
 ### 3. Set Up GitHub Copilot (if you have subscription)
+
+**Note**: Copilot is now enabled by default in your configuration.
 
 In Neovim, run:
 ```
@@ -74,6 +76,8 @@ After authentication completes, check status:
 ```
 :Copilot status
 ```
+
+If you don't have a Copilot subscription, the plugin will simply not provide suggestions (no errors).
 
 ### 4. Install LSP Servers and Tools
 

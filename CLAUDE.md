@@ -37,7 +37,7 @@ The Neovim configuration follows a modular structure:
 - **Completion**: `nvim-cmp` with LSP, buffer, and path sources
 - **Fuzzy Finder**: `telescope.nvim` with fzf-native extension
 - **Treesitter**: Code highlighting and navigation with `treesitter-textobjects` and `treesitter-context`
-- **AI Integration**: `avante.nvim` for Gemini/Claude integration with token limiting
+- **AI Integration**: `avante.nvim` for Gemini/Claude integration, `copilot.lua` for inline suggestions
 - **Dev Tools**: `lazydev.nvim` for better Lua development, `gitsigns.nvim` for git integration
 - **Auto-install Tools**: `mason-tool-installer.nvim` ensures biome, stylua, prettier, goimports, gofumpt, eslint_d, shellcheck
 
@@ -72,12 +72,21 @@ When modifying plugins:
 
 ## Fish Shell Configuration
 
-- `fish/config.fish` - Main config with `nv` alias for nvim
+- `fish/config.fish` - Main config with `nv` alias for nvim, auto-loads AI functions
 - `fish/functions/fish_prompt.fish` - "Ocean" theme with git integration
 - `fish/conf.d/fzf.fish` - fzf integration for history, directory search, git operations
 - `fish/functions/fish_user_key_bindings.fish` - Custom keybindings
+- `fish_ai_functions.fish` - AI assistant functions (Gemini, Claude, learning helpers)
 
-The fish config sources `~/.config/env.sh` for environment variables.
+The fish config sources `~/.config/env.sh` for environment variables and `~/.config/fish_ai_functions.fish` for AI functions.
+
+### AI Shell Functions
+
+Available commands (type `aihelp` to see all):
+- `gm`, `gvue`, `ggo`, `gerr` - Gemini CLI helpers
+- `cc`, `ccreview`, `cccommit`, `cctest` - Claude Code helpers
+- `learnvue`, `learngo`, `compare` - Learning helpers
+- `aicheck` - Verify AI tools are installed
 
 ## Zellij Configuration
 

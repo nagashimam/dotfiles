@@ -1,0 +1,18 @@
+// Code Reading Layout
+// Left 60%: Neovim for reading code
+// Right 40%: AI explanations pane
+
+layout {
+    pane split_direction="vertical" {
+        pane size="60%" {
+            command "nvim"
+        }
+        pane size="40%" name="AI Explanations" {
+            // Use for claude, gemini, or gexplain commands
+            command "fish"
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

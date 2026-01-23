@@ -85,8 +85,14 @@ Create a layout optimized for AI-assisted development:
 **Pros**: Understands entire codebase, autonomous
 **Cons**: Less control, need to review carefully
 
-**Setup**:
-Already installed! Just use it.
+**Setup**: Already configured! Use `cc` as a short alias, or the full `claude` command.
+
+Available Claude functions (type `aihelp` for full list):
+- `cc <task>` - Quick Claude Code access
+- `ccreview` - Review current git changes
+- `cccommit` - Generate commit message for staged changes
+- `ccrefactor <file>` - Refactor a file
+- `cctest <file>` - Add unit tests
 
 ---
 
@@ -98,28 +104,17 @@ Already installed! Just use it.
 npm install -g @google/generative-ai-cli
 ```
 
-**Setup in Fish** (add to `~/.config/fish/config.fish`):
-```fish
-# Quick Gemini access
-function gm
-    gemini-cli $argv
-end
+**Setup**: Already configured! Fish shell auto-loads AI functions from `~/.config/fish_ai_functions.fish`.
 
-# Vue.js specific help
-function gvue
-    gemini-cli "Vue.js 3 Composition API: $argv"
-end
+Available Gemini functions:
+- `gm <query>` - General Gemini query
+- `gvue <topic>` - Vue.js 3 Composition API help
+- `ggo <topic>` - Go programming help
+- `gerr <error>` - Explain error messages
+- `gexplain <code>` - Explain code
+- `gapi <function>` - API documentation
 
-# Go specific help
-function ggo
-    gemini-cli "Go programming: $argv"
-end
-
-# Explain error messages
-function gerr
-    gemini-cli "Explain this error and how to fix it: $argv"
-end
-```
+Type `aihelp` to see all available AI commands.
 
 **Workflow**:
 ```
@@ -392,7 +387,7 @@ Claude: "Review this hunk for issues"
 ```fish
 # Add to your gm function
 function gm
-    gemini-cli --max-tokens 500 $argv
+    gemini --max-tokens 500 $argv
 end
 ```
 

@@ -20,6 +20,38 @@
         "get_hover",
         "get_signature_help"
       ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home",
+        "/tmp"
+      ],
+      "env": {},
+      "autoApprove": [
+        "read_file",
+        "list_directory",
+        "get_file_info",
+        "search_files"
+      ]
+    },
+    "git": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "."
+      ],
+      "env": {},
+      "autoApprove": [
+        "git_log",
+        "git_diff",
+        "git_status",
+        "git_show",
+        "git_diff_staged"
+      ]
     }
   }
 }

@@ -8,32 +8,32 @@
 
 # Quick Gemini access
 function gm
-    gemini-cli $argv
+    gemini $argv
 end
 
 # Vue.js specific help
 function gvue
-    gemini-cli "Vue.js 3 Composition API: $argv"
+    gemini "Vue.js 3 Composition API: $argv"
 end
 
 # Go specific help
 function ggo
-    gemini-cli "Go programming best practices: $argv"
+    gemini "Go programming best practices: $argv"
 end
 
 # Explain error messages
 function gerr
-    gemini-cli "Explain this error and provide a fix: $argv"
+    gemini "Explain this error and provide a fix: $argv"
 end
 
 # Quick code explanation
 function gexplain
-    gemini-cli "Explain this code: $argv"
+    gemini "Explain this code: $argv"
 end
 
 # API documentation lookup
 function gapi
-    gemini-cli "Show documentation and examples for: $argv"
+    gemini "Show documentation and examples for: $argv"
 end
 
 # ============================================
@@ -42,12 +42,12 @@ end
 
 # Quick Claude Code access (if you prefer shorter command)
 function cc
-    claude-code $argv
+    claude $argv
 end
 
 # Review current changes
 function ccreview
-    claude-code "Review the current git changes and suggest improvements"
+    claude "Review the current git changes and suggest improvements"
 end
 
 # Generate commit message
@@ -57,7 +57,7 @@ function cccommit
         echo "No staged changes. Use 'git add' first."
         return 1
     end
-    claude-code "Generate a clear, concise commit message for these changes"
+    claude "Generate a clear, concise commit message for these changes"
 end
 
 # Refactor file
@@ -66,7 +66,7 @@ function ccrefactor
         echo "Usage: ccrefactor <filename>"
         return 1
     end
-    claude-code "Refactor $argv to improve code quality, readability, and performance"
+    claude "Refactor $argv to improve code quality, readability, and performance"
 end
 
 # Add tests
@@ -75,7 +75,7 @@ function cctest
         echo "Usage: cctest <filename>"
         return 1
     end
-    claude-code "Add comprehensive unit tests for $argv"
+    claude "Add comprehensive unit tests for $argv"
 end
 
 # ============================================
@@ -91,7 +91,7 @@ function gaic
     end
 
     # Get AI-generated commit message
-    set -l msg (claude-code "Generate a commit message for these changes (one line only)" 2>/dev/null)
+    set -l msg (claude "Generate a commit message for these changes (one line only)" 2>/dev/null)
 
     # Show message and ask for confirmation
     echo "Suggested commit message:"
@@ -150,7 +150,7 @@ function learnvue
         echo "Example: learnvue 'computed vs watch'"
         return 1
     end
-    gemini-cli "Explain Vue.js 3 Composition API topic with examples: $argv"
+    gemini "Explain Vue.js 3 Composition API topic with examples: $argv"
 end
 
 # Learn Go topic
@@ -160,7 +160,7 @@ function learngo
         echo "Example: learngo 'goroutines and channels'"
         return 1
     end
-    gemini-cli "Explain Go programming concept with examples: $argv"
+    gemini "Explain Go programming concept with examples: $argv"
 end
 
 # Compare two approaches
@@ -170,7 +170,7 @@ function compare
         echo "Example: compare 'Vue Options API' 'Vue Composition API'"
         return 1
     end
-    gemini-cli "Compare and contrast: $argv[1] vs $argv[2]. Include pros, cons, and when to use each."
+    gemini "Compare and contrast: $argv[1] vs $argv[2]. Include pros, cons, and when to use each."
 end
 
 # ============================================
@@ -183,7 +183,7 @@ function aicheck
     echo ""
 
     # Claude Code
-    if type -q claude-code
+    if type -q claude
         echo "✅ Claude Code CLI: installed"
     else
         echo "❌ Claude Code CLI: not found"
@@ -191,7 +191,7 @@ function aicheck
     end
 
     # Gemini CLI
-    if type -q gemini-cli
+    if type -q gemini
         echo "✅ Gemini CLI: installed"
     else
         echo "❌ Gemini CLI: not found"
@@ -229,6 +229,10 @@ function aihelp
     echo "AI Assistant Commands"
     echo "===================="
     echo ""
+    echo "Zellij Layouts:"
+    echo "  dev                     - Launch AI dev layout (nvim + AI + git)"
+    echo "  devread                 - Launch code reading layout"
+    echo ""
     echo "Gemini (Free tier):"
     echo "  gm <query>              - Ask Gemini anything"
     echo "  gvue <topic>            - Vue.js help"
@@ -247,6 +251,10 @@ function aihelp
     echo "Git + AI:"
     echo "  gaic                    - Commit with AI message"
     echo ""
+    echo "Documentation:"
+    echo "  godoc <pkg>             - Go stdlib docs (e.g. godoc fmt)"
+    echo "  vuedoc <topic>          - Vue.js docs via Gemini"
+    echo ""
     echo "Learning:"
     echo "  learnvue <topic>        - Learn Vue.js"
     echo "  learngo <topic>         - Learn Go"
@@ -260,6 +268,58 @@ function aihelp
     echo "Neovim AI:"
     echo "  <leader>aa              - Open Avante chat"
     echo "  Alt+l                   - Accept Copilot"
+end
+
+# ============================================
+# Zellij Layout Launchers
+# ============================================
+
+# Launch AI development layout
+function dev
+    set -l layout_path ~/.config/zellij/layouts/ai-dev.kdl
+    if test -f $layout_path
+        zellij --layout $layout_path
+    else
+        echo "Layout not found: $layout_path"
+        return 1
+    end
+end
+
+# Launch code reading layout
+function devread
+    set -l layout_path ~/.config/zellij/layouts/code-reading.kdl
+    if test -f $layout_path
+        zellij --layout $layout_path
+    else
+        echo "Layout not found: $layout_path"
+        return 1
+    end
+end
+
+# ============================================
+# Terminal Documentation Functions
+# ============================================
+
+# Go standard library documentation
+function godoc
+    if test (count $argv) -eq 0
+        echo "Usage: godoc <package>"
+        echo "Example: godoc fmt"
+        echo "Example: godoc net/http"
+        return 1
+    end
+    go doc $argv
+end
+
+# Vue.js documentation via Gemini
+function vuedoc
+    if test (count $argv) -eq 0
+        echo "Usage: vuedoc <topic>"
+        echo "Example: vuedoc computed"
+        echo "Example: vuedoc watchers"
+        return 1
+    end
+    gemini "Vue.js 3 Composition API documentation for: $argv. Include code examples and common patterns."
 end
 
 # ============================================

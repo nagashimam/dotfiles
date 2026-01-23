@@ -5,4 +5,7 @@ if status is-interactive
     fish_add_path $HOME/go/bin
     set -Ux EDITOR /usr/local/bin/nvim
     set -Ux LESSCHARSET utf-8
+
+    # Load AI assistant functions
+    source ~/.config/fish_ai_functions.fish
 end

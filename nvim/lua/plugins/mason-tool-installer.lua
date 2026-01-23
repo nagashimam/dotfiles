@@ -25,6 +25,10 @@ return {
 			"emmet_ls",
 			"gopls",
 			"lua_ls",
+
+			-- Debuggers
+			"delve",
+			"js-debug-adapter",
 		},
 	},
 }
