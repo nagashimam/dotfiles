@@ -1,4 +1,5 @@
 return {
+	--[[
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
 	event = "VeryLazy",
@@ -38,4 +39,5 @@ return {
 			server_opts_overrides = {},
 		})
 	end,
+  --]]
 }
