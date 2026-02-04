@@ -36,11 +36,4 @@ return function(capabilities)
 		cmd = { "emmet-ls", "--stdio" },
 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "vue" },
 	})
-
-	-- Biome (Fast formatter/linter for JS/TS/JSON)
-	vim.lsp.config("biome", {
-		capabilities = capabilities,
-		cmd = { "biome", "lsp-proxy" },
-		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
-	})
 end

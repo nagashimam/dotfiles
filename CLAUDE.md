@@ -15,7 +15,7 @@ The Neovim configuration follows a modular structure:
 
 - `nvim/init.lua` - Entry point that loads core modules
 - `nvim/lua/core/` - Core configuration
-  - `option.lua` - Vim options, built-in plugin disabling, and WSL clipboard integration (win32yank)
+  - `option.lua` - Vim options, built-in plugin disabling, and OSC 52 clipboard
   - `keymap.lua` - Global keymaps (leader: space)
   - `lazy.lua` - lazy.nvim plugin manager setup
 - `nvim/lua/plugins/` - Plugin configurations (each plugin in its own file)
@@ -27,19 +27,19 @@ The Neovim configuration follows a modular structure:
   - Vue.js support: ts_ls with `@vue/typescript-plugin` (no separate vue_ls)
   - gopls configured with `gofumpt = true` for Go formatting
 - **Formatting**: `conform.nvim` with format-on-save enabled
-  - JavaScript/TypeScript/CSS/HTML/Vue: prettier
+  - JavaScript/TypeScript/CSS/HTML/Vue: prettierd
   - JSON/YAML: biome
   - Lua: stylua
   - Go: handled by gopls (imports + gofumpt formatting via LSP)
 - **Linting**: `nvim-lint` with auto-linting on BufWritePost
-  - JavaScript/TypeScript/CSS/HTML: eslint_d
-  - Lua: luacheck (configured to recognize `vim` global)
+  - JavaScript/TypeScript/CSS/HTML/Vue: eslint_d
+  - Lua: selene
 - **Completion**: `nvim-cmp` with LSP, buffer, and path sources
 - **Fuzzy Finder**: `telescope.nvim` with fzf-native extension
 - **Treesitter**: Code highlighting and navigation with `treesitter-textobjects` and `treesitter-context`
 - **AI Integration**: `avante.nvim` for Gemini/Claude integration, `copilot.lua` for inline suggestions
 - **Dev Tools**: `lazydev.nvim` for better Lua development, `gitsigns.nvim` for git integration
-- **Auto-install Tools**: `mason-tool-installer.nvim` ensures biome, stylua, prettier, goimports, gofumpt, eslint_d, shellcheck
+- **Auto-install Tools**: `mason-tool-installer.nvim` ensures biome, stylua, prettierd, goimports, gofumpt, eslint_d, shellcheck
 
 ### Important Neovim Keymaps
 
@@ -47,20 +47,19 @@ Navigation:
 - `]d` - Go to definition
 - `]r` - Go to references
 - `]t` - Go to type definition
-- `[[` / `]]` - Previous/next diagnostic
-- `]c` / `[c` - Next/previous class (treesitter)
-- `]m` / `[m` - Next/previous function (treesitter)
+- `[g` / `]g` - Previous/next diagnostic
+- `]f` / `[f` - Next/previous function (treesitter)
+- `]c` / `[c` - Next/previous git hunk (gitsigns)
 
 Leader commands (space):
-- `<leader>f` - Find files (Telescope)
-- `<leader>g` - Live grep (Telescope)
-- `<leader>e` - Grep by extension (custom function)
-- `<leader>h` - Hover documentation
-- `<leader>r` - Rename symbol
-- `<leader>c` - Code action
-- `<leader>o` - Format code (LSP fallback)
+- `<leader>tf` - Find files (Telescope)
+- `<leader>tg` - Live grep (Telescope)
+- `<leader>te` - Grep by extension (custom function)
+- `<leader>lh` - Hover documentation
+- `<leader>lr` - Rename symbol
+- `<leader>lc` - Code action
+- `<leader>ld` - Show diagnostic float
 - `<leader>m` - Manual format (conform.nvim)
-- `<leader>d` - Show diagnostic float
 
 ### Working with Neovim Config
 
@@ -75,29 +74,32 @@ When modifying plugins:
 - `fish/config.fish` - Main config with `nv` alias for nvim, auto-loads AI functions
 - `fish/functions/fish_prompt.fish` - "Ocean" theme with git integration
 - `fish/conf.d/fzf.fish` - fzf integration for history, directory search, git operations
-- `fish/functions/fish_user_key_bindings.fish` - Custom keybindings
+- `fish/functions/fish_user_key_bindings.fish` - fzf keybindings (via fzf.fish plugin)
 - `fish_ai_functions.fish` - AI assistant functions (Gemini, Claude, learning helpers)
 
-The fish config sources `~/.config/env.sh` for environment variables and `~/.config/fish_ai_functions.fish` for AI functions.
+The fish config sources `~/.config/fish_ai_functions.fish` for AI functions.
 
 ### AI Shell Functions
 
 Available commands (type `aihelp` to see all):
-- `gm`, `gvue`, `ggo`, `gerr` - Gemini CLI helpers
-- `cc`, `ccreview`, `cccommit`, `cctest` - Claude Code helpers
+- `gm`, `gvue`, `ggo`, `gerr`, `gexplain`, `gapi` - Gemini CLI helpers
+- `cc`, `ccreview`, `cccommit`, `cctest`, `ccrefactor` - Claude Code helpers
 - `learnvue`, `learngo`, `compare` - Learning helpers
+- `gaic`, `nvai`, `aicontext` - Workflow integration
+- `godoc`, `vuedoc` - Documentation helpers
+- `dev`, `devread` - Zellij layout launchers
 - `aicheck` - Verify AI tools are installed
 
 ## Zellij Configuration
 
 - `zellij/config.kdl` - Custom keybindings with `default_mode "locked"`
-- Scrollback editor set to `/usr/bin/nvim`
 - Vim-style navigation (hjkl) in all modes
+- Custom layouts: `ai-dev.kdl` (Neovim 70% + AI 30%), `code-reading.kdl` (Neovim 60% + AI 40%)
 
 ## Development Environment Notes
 
 - **Platform**: WSL2 (Linux on Windows)
-- **Clipboard**: Uses win32yank.exe for WSL-Windows clipboard integration
+- **Clipboard**: OSC 52 for clipboard (copy only; paste uses default)
 - **Git**: Branch strategy visible in commits (feature branches merged via PRs)
 - **Primary Language Focus**: JavaScript/TypeScript (Vue.js) and Go
 
@@ -105,7 +107,7 @@ Available commands (type `aihelp` to see all):
 
 1. **Neovim Performance**: Recent commits show focus on lazy loading and startup optimization
 2. **Tool Consistency**:
-   - Prettier for JavaScript/TypeScript formatting
+   - prettierd for JavaScript/TypeScript formatting
    - ESLint for JavaScript/TypeScript linting
    - Biome for JSON/YAML formatting
    - gopls with gofumpt for Go (LSP-driven)
